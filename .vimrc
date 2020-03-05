@@ -1,36 +1,5 @@
 execute pathogen#infect()
 
-syntax on
-filetype plugin indent on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Amir Salihefendic — @amix3k
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,59 +13,24 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"Replace with Register
+
 " SURROUND
-"
 
 " NERDTree
 
-" How can I open a NERDTree automatically when vim starts up if no files were specified?
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" TABULAR
 
-"How can I map a specific key or shortcut to open NERDTree?
+" vim-multiple-cursors
 
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" VIM-EUNUCH
 
-"VIM-AIRLINE
+" Commentary
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+" VIM-AUTOFORMAT
 
-let g:airline#extensions#tabline#enabled = 1
-
-" powerline symbols
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-
-"VIM-AIRLINE-THEMES
-let g:airline_theme='bubblegum' "dark
-
-"TABULAR
-"
-
-"VIM-MULTIPLE-CURSORS
-"
-
-"VIM-EUNUCH
-"
-
-"COMMENTARY
-"
-
-"VIM-AUTOFORMAT
-"
-
-"AUTO-PAIRS
-"
+"Lightline
+let g:lightline= { 'colorscheme': 'palenight'} "'gruvbox_material'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -181,7 +115,7 @@ set incsearch
 set lazyredraw
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -204,6 +138,14 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 " Enable syntax highlighting
 syntax enable
 
+set termguicolors
+
+let &t_8f = "\e[38;2;%lu;%lu;%lum"
+let &t_8b = "\e[48;2;%lu;%lu;%lum"
+
+
+colorscheme palenight " gruvbox-material
+
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -218,8 +160,7 @@ set nobackup
 set nowb
 set noswapfile
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
@@ -228,10 +169,10 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 " Linebreak on 500 characters
 set lbr
@@ -278,8 +219,8 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -395,7 +336,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
