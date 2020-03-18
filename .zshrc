@@ -78,7 +78,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zsh-syntax-highlighting rbenv)
+plugins=(git vi-mode rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='mvim'
+   export EDITOR='vim'
  fi
 
 # Compilation flags
@@ -116,3 +116,4 @@ eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /home/f3nix/.config/zshrc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
