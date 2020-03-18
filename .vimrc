@@ -30,7 +30,7 @@ let g:syntastic_check_on_wq = 0
 " VIM-AUTOFORMAT
 
 "Lightline
-let g:lightline= { 'colorscheme': 'palenight'} "'gruvbox_material'
+" let g:lightline= { 'colorscheme': 'palenight'} "'gruvbox_material''palenight'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -145,6 +145,8 @@ let &t_8b = "\e[48;2;%lu;%lu;%lum"
 
 
 colorscheme palenight " gruvbox-material
+"below line is to set transparency"
+hi Normal guibg=NONE ctermbg=NONE
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
