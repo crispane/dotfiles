@@ -3,9 +3,13 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = SF Mono Regular 14 #DejaVu Sans Mono for Powerline 12
+font = MesloLGS NF 10 
+#SF Mono Powerline 10 
+#MesloLGS NF 14
+#SF Mono Regular 14 
+#DejaVu Sans Mono for Powerline 12
 #fullscreen = true
-#geometry = 640x480
+geometry = 640x480
 #icon_name = terminal
 #mouse_autohide = false
 #scroll_on_output = false
@@ -21,7 +25,7 @@ scrollback_lines = 10000
 #browser = xdg-open
 
 # "system", "on" or "off"
-#cursor_blink = system
+cursor_blink = off
 
 # "block", "underline" or "ibeam"
 #cursor_shape = block
@@ -49,9 +53,9 @@ scrollback_lines = 10000
 #background = #3f3f3f
 
 # 20% background transparency (requires a compositor)
-background = rgba(40, 42, 54, 0,8) 
+background = rgba(34, 45, 49, 0.8)
+#rgba(40, 42, 54, 0.8)
 #rgba(34, 45, 49, 0.8)
-
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
 
