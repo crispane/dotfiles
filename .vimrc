@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+" 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -36,7 +36,7 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'tpope/vim-commentary'
 Plugin 'drewtempelmeyer/palenight.vim'
-
+Plugin 'ycm-core/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -87,6 +87,18 @@ let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" turn relative line numbers on
+:set relativenumber
+:set rnu
+
+"" turn relative line numbers off
+":set norelativenumber
+":set nornu
+"
+"" toggle relative line numbers
+":set relativenumber!
+":set rnu!
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
