@@ -7,7 +7,6 @@ fi
 
 
 export PANEL_FIFO="/tmp/panel-fifo"
-export PATH=$PATH:$HOME/.config/bspwm
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -110,6 +109,19 @@ source $ZSH/oh-my-zsh.sh
 alias q="exit"
 alias v="vim"
 alias p="sudo pacman"
+alias pvpn="sudo protonvpn c -f"
+alias cmca="termite -e cava & cmus"
+alias ls="ls --group-directories-first -hN --color=auto"
+alias sdn="sudo shutdown now"
+alias yt="youtube-dl --add-metadata -ic" #Download video link
+alias yta="youtube-dl --add-metadata -xic" #Download audio only
+alias YT="youtube-viewer"
+alias mkd="mkdir -pv"
+alias ls="ls --group-directories-first -hN --color=auto"
+alias grep="grep --color=auto" # Color grep - Highlight desired sequence
+alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting
+alias cmca="termite -e cava & cmus"
+alias sgit="sudo git"
 # bindkey -v
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -117,3 +129,19 @@ eval "$(rbenv init -)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /home/f3nix/.config/zshrc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/f3nix/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/f3nix/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/f3nix/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/f3nix/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
