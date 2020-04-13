@@ -17,7 +17,7 @@ new_float normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:SF Pro Display 10
+font pango: Source Sans 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -28,7 +28,7 @@ font pango:SF Pro Display 10
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -45,12 +45,14 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec termite
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#2e3440' -nf '#81a1c1' -sb '#81a1c1' -sf '#2e3440' -fn 'Source Sans:regular:pixelsize=16'
+
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -179,7 +181,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -226,7 +228,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Autostart applications
-exec --no-startup-id redshift
+exec --no-startup-id redshift-gtk
+exec --no-startup-id udiskie
+exec --no-startup-id viber
 exec --no-startup-id protonmail-bridge
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
@@ -237,6 +241,8 @@ exec_always --no-startup-id sbxkb
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id "setxkbmap -model pc104 -layout us,gr -variant ,, -option grp:win_space_toggle caps:escape"
 
+# bindsym applications
+bindsym $mod+c exec chromium
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -261,7 +267,7 @@ bar {
 
 
 #                               border  backgr. text
-                focused_workspace  #F9FAF9 #16a085 #292F34
+                focused_workspace  #F9FAF9 #81a1c1 #292F34
                 active_workspace   #595B5B #353836 #FDF6E3
                 inactive_workspace #595B5B #222D31 #EEE8D5
                 binding_mode       #16a085 #2C2C2C #F9FAF9
@@ -274,10 +280,10 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-client.focused          #556064 #556064 #80FFF9 #FDF6E3
-client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.focused          #2E3440 #2E3440 #FA68BE #FDF6E3
+client.focused_inactive #0C1220 #0C1220 #515772 #454948
+client.unfocused        #0C1220 #0C1220 #515772 #454948
+client.urgent           #CB4B16 #FDF6E3 #515772 #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 client.background       #2B2C2B
