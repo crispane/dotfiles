@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-" 
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -81,8 +81,11 @@ let g:syntastic_check_on_wq = 0
 
 " VIM-AUTOFORMAT
 
-"Lightline
-" let g:lightline= { 'colorscheme': 'palenight'} "'gruvbox_material''palenight'
+"Powerline10k
+
+"YouCompleteMe
+
+let g:ycm_global_ycm_extra_conf='/home/f3nix/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
