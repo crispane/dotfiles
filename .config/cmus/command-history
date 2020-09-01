@@ -1,0 +1,27 @@
+colorscheme nordic
+colorscheme night
+colorscheme jellybeans
+colorscheme gruvbox-alt
+colorscheme green-mono-88
+colorscheme cyan
+colorscheme gray-88
+colorscheme dracula
+colorscheme default
+colorscheme gruvbox
+add /run/media/f3nix/Seagate8AS/Music/
+add Music/
+Add
+q
+colorscheme green
+colorscheme solarized-dark
+colorscheme zenburn
+clear
+add /run/media/f3nix/Seagate8AS/Mathimata/
+add /run/media/f3nix/Seagate8AS/Music
+colorscheme xterm-white
+colorscheme ~/.config/cmus/night
+colorscheme dracula.theme
+colorscheme night.theme
+add
+add!
+save

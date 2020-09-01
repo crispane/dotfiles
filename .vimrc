@@ -1,91 +1,147 @@
+if has('python3')
+    set pyx=3
+else
+    set pyx=2
+endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" vim-plug Installation if not present
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-" MYPLUGINS
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-eunuch'
-Plugin 'chiel92/vim-autoformat'
-Plugin 'tpope/vim-commentary'
-Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'ycm-core/YouCompleteMe'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#begin('~/.vim/plugged')
+
+"NERDtree
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" deoplete
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" Javacomplete2
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}  "Load only for java files
+
+" ALE
+Plug 'w0rp/ale'
+
+" Snippet manager
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
+"Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-eunuch'
+Plug 'chiel92/vim-autoformat'
+Plug 'tpope/vim-commentary'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SYNTASTIC
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+" let g:syntastic_python_python_exec = 'python3'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" DEOPLETE
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+            \ 'auto_complete': v:true,
+            \ 'auto_complete_delay': 10,
+            \ 'smart_case': v:true,
+            \ })
 
-"Replace with Register
+call deoplete#custom#source('javacomplete2','jc', 'file', 'buffer', 'ultisnips')
 
-" SURROUND
+" use TAB as the mapping
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ?  "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "" {{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction "" }}}
 
-" NERDTree
+" Java completion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType java JCEnable
 
-" TABULAR
+" To enable inserting class imports with F4, add:
+nmap <F4> <Plug>(JavaComplete-Imports-Add)
+imap <F4> <Plug>(JavaComplete-Imports-Add)
+" To add all missing imports with F5:
+nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+" To remove all missing imports with F6:
+nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 
-" vim-multiple-cursors
+" ALE linter configuration
 
-" VIM-EUNUCH
+" Shorten error/warning flags
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+" I have some custom icons for errors and warnings but feel free to change them.
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
 
-" Commentary
+" Disable or enable loclist at the bottom of vim
+" Comes down to personal preference.
+let g:ale_open_list = 0
+let g:ale_loclist = 0
 
-" VIM-AUTOFORMAT
+" Setup compilers for languages
 
-"Powerline10k
+let g:ale_linters = {
+            \  'cs':['syntax', 'semantic', 'issues'],
+            \  'python': ['pylint'],
+            \  'java': ['javac']
+            \ }
 
-"YouCompleteMe
+" ultisnips configuration
+"
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
 
-let g:ycm_global_ycm_extra_conf='/home/f3nix/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+" Since we are already using Deoplete, and using tab with both doesn't work nice use <c-j> instead
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+
+" Replace with Register
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -133,8 +189,8 @@ set mouse=a
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "POWERLINE-VIM
-let g:powerline_pycmd="py3"
-let g:Powerline_symbols = 'fancy'
+"let g:powerline_pycmd="py3"
+"let g:Powerline_symbols = 'fancy'
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -204,19 +260,31 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
+if has('termguicolors')
+    set termguicolors
+endif
 
-set termguicolors
+" For dark version.
+set background=dark
+
+" For light version.
+"set background=light
+
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'hard'
 
 let &t_8f = "\e[38;2;%lu;%lu;%lum"
 let &t_8b = "\e[48;2;%lu;%lu;%lum"
 
 
-colorscheme palenight " gruvbox-material
+colorscheme nord "palenight gruvbox-material
 "below line is to set transparency"
 hi Normal guibg=NONE ctermbg=NONE
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -247,6 +315,7 @@ set softtabstop=4
 set lbr
 set tw=500
 
+set shiftround "rounds indent to a multiple of shiftwidth
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
@@ -306,8 +375,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 

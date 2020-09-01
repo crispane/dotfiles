@@ -90,9 +90,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
-   export EDITOR='vim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -107,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias q="exit"
-alias v="vim"
+alias v="nvim"
 alias p="sudo pacman"
 alias pvpn="sudo protonvpn c -f"
 alias cmca="termite -e cava & cmus"
@@ -130,18 +130,4 @@ eval "$(rbenv init -)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /home/f3nix/.config/zshrc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/f3nix/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/f3nix/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/f3nix/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/f3nix/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 

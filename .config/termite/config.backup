@@ -3,17 +3,13 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = SF Mono Powerline 10
-#Source Code Pro 10 
-#fira code nerd font mono 13
-#SF Mono Powerline 10  
-#Source Code Pro 11 
+font = MesloLGS NF 10 
 #SF Mono Powerline 10 
 #MesloLGS NF 14
 #SF Mono Regular 14 
 #DejaVu Sans Mono for Powerline 12
 #fullscreen = true
-geometry = 1500x1500
+geometry = 640x480
 #icon_name = terminal
 #mouse_autohide = false
 #scroll_on_output = false
@@ -49,32 +45,37 @@ cursor_blink = off
 [colors]
 # If both of these are unset, cursor falls back to the foreground color,
 # and cursor_foreground falls back to the background color.
-cursor = #d8dee9
-cursor_foreground = #2e3440
+#cursor = #dcdccc
+#cursor_foreground = #dcdccc
 
-foreground = #d8dee9
-foreground_bold = #d8dee9
-background = rgba(46, 52, 64, 1)
-#2e3440
+#foreground = #dcdccc
+#foreground_bold = #ffffff
+#background = #3f3f3f
 
-highlight = #4c566a
+# 20% background transparency (requires a compositor)
+background = rgba(34, 45, 49, 0.8)
+#rgba(40, 42, 54, 0.8)
+#rgba(34, 45, 49, 0.8)
+# If unset, will reverse foreground and background
+highlight = #2f2f2f
 
-color0  = #3b4252
-color1  = #bf616a
-color2  = #a3be8c
-color3  = #ebcb8b
-color4  = #81a1c1
-color5  = #b48ead
-color6  = #88c0d0
-color7  = #e5e9f0
-color8  = #4c566a
-color9  = #bf616a
-color10 = #a3be8c
-color11 = #ebcb8b
-color12 = #81a1c1
-color13 = #b48ead
-color14 = #8fbcbb
-color15 = #eceff4
+# Colors from color0 to color254 can be set
+color0 = #3f3f3f
+color1 = #705050
+color2 = #60b48a
+color3 = #dfaf8f
+color4 = #506070
+color5 = #dc8cc3
+color6 = #8cd0d3
+color7 = #dcdccc
+color8 = #709080
+color9 = #dca3a3
+color10 = #c3bf9f
+color11 = #f0dfaf
+color12 = #94bff3
+color13 = #ec93d3
+color14 = #93e0e3
+color15 = #ffffff
 
 [hints]
 #font = Monospace 12

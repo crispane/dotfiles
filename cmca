@@ -1,0 +1,3 @@
+#!/bin/sh
+cmus
+alacritty -e "cava"
